@@ -1,0 +1,26 @@
+{
+  "name": "nestio",
+  "version": "1.0.0",
+  "description": "Nestio is a full-stack web application inspired by modern vacation rental platforms like Airbnb.\r It allows users to discover unique places to stay, book properties, and host their own listings.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rony117-png/Nestio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rony117-png/Nestio/issues"
+  },
+  "homepage": "https://github.com/Rony117-png/Nestio#readme",
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.4.1"
+  }
+}
