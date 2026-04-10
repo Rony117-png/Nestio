@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nestio</title>
+</head>
+<body>
+    <h3>Create a new Listing</h3>
+    <form method="POST" action="/listings">
+        <input name="Listing[title]" placeholder="Enter title" type="text"/>
+        <br/><br/>
+        <textarea name="Listing[description]" placeholder="Enter description"></textarea>
+        <br/><br/>
+        <input name="Listing[img]" placeholder="Enter image/Link" type="text"/>
+        <br/><br/>
+        <input name="Listing[price]" placeholder="Enter price" type="number"/>
+        <br/><br/>
+        <input name="Listing[country]" placeholder="Enter country" type="text"/>
+        <br/><br/>
+        <input name="Listing[location]" placeholder="Enter location" type="text"/>
+        <br/><br/>
+        <button>Add</button>
+    </form>
+</body>
+</html>
