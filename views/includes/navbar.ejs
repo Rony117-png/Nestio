@@ -1,0 +1,161 @@
+
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#40000d",
+                    "surface-container-highest": "#e5e2e1",
+                    "tertiary-fixed": "#80f9bd",
+                    "background": "#fcf9f8",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#fffbff",
+                    "surface-bright": "#fcf9f8",
+                    "surface-container-low": "#f6f3f2",
+                    "surface": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#005234",
+                    "outline": "#906f70",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#5c3f41",
+                    "on-secondary-fixed": "#40000d",
+                    "primary-fixed-dim": "#ffb2b6",
+                    "on-secondary-fixed-variant": "#871d2f",
+                    "on-primary-fixed-variant": "#920029",
+                    "secondary": "#a73544",
+                    "tertiary-fixed-dim": "#62dca3",
+                    "tertiary-container": "#008558",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-tint": "#be0038",
+                    "primary-fixed": "#ffdada",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-container": "#fd7682",
+                    "surface-container-high": "#eae7e7",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#ffb2b6",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#006a45",
+                    "surface-container": "#f0eded",
+                    "primary-container": "#e21e4a",
+                    "inverse-surface": "#303030",
+                    "on-tertiary-container": "#f6fff6",
+                    "secondary-fixed": "#ffdada",
+                    "primary": "#ba0036",
+                    "surface-dim": "#dcd9d9",
+                    "on-background": "#1b1c1c",
+                    "inverse-primary": "#ffb2b6",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e5e2e1",
+                    "on-secondary-container": "#710920",
+                    "on-surface": "#1b1c1c",
+                    "outline-variant": "#e5bdbe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-indicator {
+            position: relative;
+        }
+        .active-nav-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 4px;
+            background-color: #FF385C;
+            border-radius: 2px;
+        }
+        .glass-nav {
+            backdrop-filter: blur(24px);
+        }
+    </style>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopNavBar Component -->
+<header class="w-full sticky top-0 z-50 bg-white/85 dark:bg-stone-900/85 backdrop-blur-md shadow-[0_40px_60px_-10px_rgba(27,28,28,0.06)]">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto font-['Plus_Jakarta_Sans'] tracking-tight">
+<!-- Logo Group -->
+<div class="flex items-center gap-2 group cursor-pointer">
+<span class="material-symbols-outlined text-3xl text-[#FF385C]" style="font-variation-settings: 'FILL' 1;">bedroom_child</span>
+<span class="text-2xl font-bold text-[#FF385C] tracking-tighter">Nestio</span>
+</div>
+<!-- Desktop Central Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="flex items-center gap-2 text-on-surface font-bold border-b-4 border-[#FF385C] pb-2 active-nav-indicator" href="/">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span class="text-sm">Homes</span>
+</a>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors pb-2 relative group" href="/listings">
+<span class="material-symbols-outlined text-[20px]" data-icon="list">list</span>
+<span class="text-sm">All Listing</span>
+<span class="absolute -top-2 -right-6 bg-primary text-[8px] text-white px-1.5 py-0.5 rounded-full font-bold">NEW</span>
+</a>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors pb-2 relative group" href="/listings/new">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_home">add_home</span>
+<span class="text-sm">Add new Listing</span>
+<span class="absolute -top-2 -right-6 bg-primary text-[8px] text-white px-1.5 py-0.5 rounded-full font-bold">NEW</span>
+</a>
+</nav>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden lg:block px-4 py-2 text-sm font-semibold hover:bg-stone-100 dark:hover:bg-stone-800 rounded-full transition-all text-on-surface">
+                    Become a Host
+                </button>
+<button class="p-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-full transition-all">
+<span class="material-symbols-outlined text-[22px]" data-icon="language">language</span>
+</button>
+<button class="flex items-center gap-3 p-2 pl-4 bg-white border border-outline-variant/30 rounded-full shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu">menu</span>
+<div class="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-[28px] text-stone-500" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Search Bar Section -->
+<div class="max-w-4xl mx-auto pb-6 px-8">
+<div class="flex items-center bg-surface-container-lowest rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-outline-variant/15 hover:border-outline-variant/40 transition-colors divide-x divide-outline-variant/20">
+<!-- Where -->
+<button class="flex-1 px-8 py-3 text-left hover:bg-stone-50 rounded-l-full transition-colors group">
+<p class="text-[10px] font-bold text-on-surface uppercase tracking-wider">Where</p>
+<p class="text-sm text-on-surface-variant font-medium">Search destinations</p>
+</button>
+<!-- When -->
+<button class="flex-1 px-8 py-3 text-left hover:bg-stone-50 transition-colors">
+<p class="text-[10px] font-bold text-on-surface uppercase tracking-wider">When</p>
+<p class="text-sm text-on-surface-variant font-medium">Add dates</p>
+</button>
+<!-- Who -->
+<button class="flex-[1.2] px-8 py-3 text-left hover:bg-stone-50 rounded-r-full transition-colors flex items-center justify-between">
+<div>
+<p class="text-[10px] font-bold text-on-surface uppercase tracking-wider">Who</p>
+<p class="text-sm text-on-surface-variant font-medium">Add guests</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-[#FF385C] flex items-center justify-center text-white shadow-lg hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined font-bold" data-icon="search">search</span>
+</div>
+</button>
+</div>
+</div>
+</header>
+</body>

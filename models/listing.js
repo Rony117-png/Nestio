@@ -10,10 +10,11 @@ const listingSchema = new schema({
         description :  {
         type :String,
     },
-        img :  {
-        type :String,
-        default : "https://share.google/sssJV755xN4b05gb3",
-    },
+        img: {
+                url: String,
+                 filename: String,
+             },
+             
      price :  {
         type :Number,
     },
