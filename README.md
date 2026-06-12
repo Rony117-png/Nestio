@@ -76,39 +76,56 @@ The platform provides a seamless experience for travelers to find comfortable ac
 * Mobile responsive UI improvements
 
 ---
-🚀 Getting Started
+## 🚀 Getting Started
 
 Follow these simple steps to set up and run the project on your local machine.
 
-1️⃣ Clone the Repository
+### 1️⃣ Clone the Repository
 
 Download the project from GitHub:
 
+```bash
 git clone https://github.com/Rony117-png/Nestio.git
-2️⃣ Navigate to the Project Directory
+```
+
+### 2️⃣ Navigate to the Project Directory
 
 Move into the project folder:
 
+```bash
 cd Nestio
-3️⃣ Install Dependencies
+```
+
+### 3️⃣ Install Dependencies
 
 Install all required packages and dependencies:
 
+```bash
 npm install
+```
 
-This command will automatically create the node_modules folder and install everything needed to run the project.
+This command will automatically create the `node_modules` folder and install everything needed to run the project.
 
-4️⃣ Start the Application
+### 4️⃣ Start the Application
 
 Run the project using:
 
+```bash
 npm start
+```
 
-If a start script is not configured, use:
+### 🎉 You're All Set!
 
-node app.js
+The application should now be running successfully on your local machine.
 
----
+### 📌 Notes
+
+- Ensure that **Node.js** and **npm** are installed on your system.
+- Run `npm install` whenever you clone the project on a new device.
+- The `node_modules` folder is not included in the repository and will be generated automatically during installation.
+- If you encounter any issues, delete `node_modules` and run `npm install` again.
+
+Happy Coding! 🚀
 ## 👨‍💻 Author
 
 **Rohan Jagadale**
