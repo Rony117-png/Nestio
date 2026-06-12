@@ -76,7 +76,39 @@ The platform provides a seamless experience for travelers to find comfortable ac
 * Mobile responsive UI improvements
 
 ---
+🚀 Getting Started
 
+Follow these simple steps to set up and run the project on your local machine.
+
+1️⃣ Clone the Repository
+
+Download the project from GitHub:
+
+git clone https://github.com/Rony117-png/Nestio.git
+2️⃣ Navigate to the Project Directory
+
+Move into the project folder:
+
+cd Nestio
+3️⃣ Install Dependencies
+
+Install all required packages and dependencies:
+
+npm install
+
+This command will automatically create the node_modules folder and install everything needed to run the project.
+
+4️⃣ Start the Application
+
+Run the project using:
+
+npm start
+
+If a start script is not configured, use:
+
+node app.js
+
+---
 ## 👨‍💻 Author
 
 **Rohan Jagadale**
