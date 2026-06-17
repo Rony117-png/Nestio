@@ -5,6 +5,9 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");// Helps to create templates & layouts
+const wrapAsync = require("./utils/wrapAsync.js");// to handle the error in async functions
+const ExpressError = require("./utils/ExpressError.js");// custom error class to handle the error in a better way   
+const { listingSchema } = require("./schema.js");// joi schema for validation
 
 // DataBase Setup connection
 main()
@@ -32,6 +35,17 @@ app.get("/",(req,res)=>{
     res.send("hellow");
 });
 
+// JOI validation middleware
+const validateListing = (req,res,next)=>{
+    let { error } = listingSchema.validate(req.body);
+    if(error){
+     let msg = error.details.map(el=>el.message).join(",");
+        throw new ExpressError(400,msg);
+    }else{
+        next();
+    }
+};
+
 // index route
 app.get("/listings",async(req,res)=>{
    const allListings = await Listing.find({});
@@ -51,32 +65,51 @@ app.get("/listings/:id",async(req,res)=>{
 });
 
 //Create route - posting the new created route to DB 
-app.post("/listings",async(req,res)=>{
+app.post("/listings", validateListing, wrapAsync(async(req,res)=>{
+   let result = listingSchema.validate(req.body);
+   if(result.error){
+    let msg = result.error.details.map(el=>el.message).join(",");
+    throw new ExpressError(400,msg);
+   }
  const newListing = new  Listing(req.body.Listing);
  await newListing.save();
 res.redirect("/listings");
-});
+}));
 
 // Edit Route
-app.get("/listings/:id/edit",async(req,res)=>{
+app.get("/listings/:id/edit",wrapAsync(async(req,res)=>{
      let {id} = req.params;
     const listing = await Listing.findById(id);
     res.render("listings/edit.ejs",{listing});
-});
+}));
 
 //update route
-app.put("/listings/:id",async(req,res)=>{
+app.put("/listings/:id", validateListing, wrapAsync(async(req,res)=>{
+    if(!req.body.Listing) throw new ExpressError(400,"Invalid Listing Data");
     let {id} = req.params;
    await Listing.findByIdAndUpdate(id,{...req.body.Listing});
    res.redirect(`/listings/${id}`);
-});
+}));
 
 // Delete Route
-app.delete("/listings/:id",async(req,res)=>{
+app.delete("/listings/:id",wrapAsync(async(req,res)=>{
     let {id} = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     res.redirect("/listings");
+}));
+
+// handling all the invalid routes
+app.all("/*splat", (req, res, next) => {
+    next(new ExpressError(404, "Page Not Found"));
+});
+
+// Error handling middleware
+app.use((err,req,res,next)=>{
+    let {statusCode = 500} = err;
+    if(!err.message) err.message = "Oh No, Something Went Wrong!";
+    res.status(statusCode).render("listings/error.ejs",{err,statusCode});
+    //res.status(statusCode).send(err.message);
 });
 
 /* Testing the listing route by adding the sample
