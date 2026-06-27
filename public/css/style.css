@@ -54,3 +54,13 @@
 .btns{
     display: flex;
 }
+
+.review-card{
+    border: 1px solid #e9ecef !important;
+    border-radius: 0.75rem;
+    margin-bottom: 0;
+}
+
+.review-card .card-body{
+    padding: 1rem !important;
+}

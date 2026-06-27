@@ -1,27 +1,96 @@
 <% layout('layouts/boilerplate.ejs') %>
-<body>
-    <div class="row">
-        <div class="col-8 offset-3 mt-3 mb-2">
-   <b> <h3>Listing Details :</h3> </b>
-        </div>
+<div class="row">
+    <div class="col-8 offset-3 mt-3 mb-2">
+        <b><h3><%= listing.title %></h3></b>
+    </div>
     <div class="card col-6 offset-3">
-  <img src="<%= listing.img.url %>?w=500" class="card-img-top show-img" alt="Listing_image">
-  <div class="card-body">
-    <p class="card-text">
-       <b> <%= listing.title %></b><br>
-       <%= listing.description%><br>
-       &#8377;<%= listing.price %><br>
-       <%= listing.location %><br>
-       <%= listing.country %>
-    </p>
-  </div>
-
-</div>
-<div class="btns mb-3"> 
+        <img src="<%= listing.img.url %>?w=500" class="card-img-top show-img" alt="Listing_image">
+        <div class="card-body">
+            <p class="card-text">
+                <%= listing.description%><br>
+                &#8377;<%= listing.price %><br>
+                <%= listing.location %><br>
+                <%= listing.country %>
+            </p>
+        </div>
+    </div>
+    <div class="btns mb-4"> 
         <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
 
         <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-            <button class="btn btn-dark offset-5">Delete </button>
+            <button class="btn btn-dark offset-5">Delete</button>
         </form>
+    </div>
+     <!-- Review form -->
+    <div class="col-6 offset-3 mb-5 pb-5">
+       <b><h3 class="mb-3">Leave a Review</h3></b>
+        <form class="card mb-4 p-3 needs-validation" method="POST" action="/listings/<%= listing._id %>/reviews" novalidate>
+            <div class="mb-3">
+                <label for="authorName" class="form-label">Your name</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="authorName"
+                    name="review[authorName]"
+                    placeholder="Enter your name"
+                    required
+                >
+                <div class="invalid-feedback">
+                    Please provide your name!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Add your review</label>
+                <textarea
+                    class="form-control"
+                    id="comment"
+                    name="review[comment]"
+                    rows="4"
+                    placeholder="Share what you liked about this stay"
+                    required
+                ></textarea>
+                <div class="invalid-feedback">
+                    Please provide a review comment!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="rating"
+                    name="review[rating]"
+                    min="1"
+                    max="5"
+                    step="1"
+                    value="5"
+                    required
+                >
+                <div class="invalid-feedback">
+                    Please provide a rating!
+                </div>
+            </div>
+            <button class="btn btn-dark">Submit Review</button>
+        </form>
+        <hr>
+        <br>
+        <!-- Display existing reviews -->
+        <b><h4 class="mb-3">Reviews</h4></b>
+        <div class="row g-3">
+            <% listing.reviews.forEach(function(review){ %>
+            <div class="col-12 col-md-6">
+                <div class="card review-card h-100">
+                    <div class="card-body p-3">
+                        <h6 class="mb-1"><%= review.authorName || "Demoan Targerian" %></h6>
+                        <p class="mb-2"><%= review.comment %></p>
+                        <small class="d-block mb-3">Rating: <%= review.rating %>/5</small>
+                        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                            <button class="btn btn-sm btn-outline-danger">Delete Review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
 </div>
-</body>
