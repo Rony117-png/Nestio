@@ -6,6 +6,8 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");// Helps to create templates & layouts
 const ExpressError = require("./utils/ExpressError.js");// custom error class to handle the error in a better way   
+const session = require("express-session");// session middleware
+const flash = require("connect-flash");// flash middleware
 
 const listings = require("./routes/listing.js");// listing route
 const reviews = require("./routes/review.js");// review route
@@ -31,11 +33,33 @@ app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"public")));
 
+// session configuration
+const sessionOptions = {
+    secret: "thisshouldbeabettersecret!",
+    resave: false,
+    saveUninitialized: true,
+    // cookie configuration
+    cookie : {
+        expires:Date.now() + 1000*60*60*24*7,// 1 week
+        maxAge: 1000*60*60*24*7,// 1 week
+        httpOnly: true
+    },
+};
+
 // Root Api
 app.get("/",(req,res)=>{
     res.send("hellow");
 });
 
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req,res,next)=>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
 
 app.use("/listings",listings);// listing route
 app.use("/listings/:id/reviews",reviews);// review route

@@ -22,7 +22,7 @@
        </div>
        <div class="mb-4">
               <lable for="image" class="form-label">Image Link</lable>
-              <input name="Listing[img]" value="<%= listing.img %>" type="text" class="form-control" required/>
+        <input name="Listing[img][url]" value="<%= listing.img && listing.img.url ? listing.img.url : '' %>" type="text" class="form-control" required/>
               <div class="invalid-feedback">
                   Please enter an valid image link.
               </div>
